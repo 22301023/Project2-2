@@ -20,20 +20,44 @@
 <body>
 <jsp:include page="header.jsp" />
 <%
+    // 검색 조건과 검색어 가져오기
+    String key = request.getParameter("key");
+    String keyword = request.getParameter("keyword");
+
     BoardDAO boardDAO = new BoardDAO();
-    List<BoardVO> list = boardDAO.getBoardList();
+    // 검색 매개변수를 전달하여 리스트 가져오기
+    List<BoardVO> list = boardDAO.getBoardList(key, keyword);
     request.setAttribute("list",list);
 %>
 <div class="container">
     <h2 class="my-4">JSP 게시판</h2>
 
+    <!-- 검색 폼 시작 -->
+    <form action="list.jsp" method="get" class="mb-3">
+        <div class="row g-2 justify-content-end">
+            <div class="col-auto">
+                <select name="key" class="form-select">
+                    <option value="lastname" <%= "lastname".equals(key) ? "selected" : "" %>>성</option>
+                    <option value="gender" <%= "gender".equals(key) ? "selected" : "" %>>성별</option>
+                    <option value="occupation" <%= "occupation".equals(key) ? "selected" : "" %>>직업</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input type="text" name="keyword" class="form-control" placeholder="검색어 입력" value="<%= keyword != null ? keyword : "" %>">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">검색</button>
+            </div>
+        </div>
+    </form>
+    <!-- 검색 폼 끝 -->
+
     <table class="table table-hover text-center" id = "list">
         <thead class="table-dark">
         <tr>
             <th>번호</th>
-            <th>ID</th>
-            <th>성</th>
             <th>이름</th>
+            <th>성</th>
             <th>나이</th>
             <th>성별</th>
             <th>직업</th>
@@ -46,7 +70,6 @@
         <c:forEach items = "${list}" var = "u" varStatus = "status">
             <tr>
                 <td>${status.count}</td>
-                <td>${u.getId()}</td>
                 <td>${u.getFirstname()}</td>
                 <td>${u.getLastname()}</td>
                 <td>${u.getAge()}</td>
