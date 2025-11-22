@@ -1,1 +1,15 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/D9S_Oh8Z)
+# Project2-2
+    This simple website shows the list of data from database and execute several tasks
+    such as, create, delete, search and view all. 
+
+# result
+1. List view
+   ![initial screen](./images/0.png)
+2. Create view
+   ![1](./images/1.png)
+3. Search view
+   ![2](./images/2.png)
+4. Edit view
+   ![3](./images/3.png)
+5. Delete view
+   ![4](./images/4.png)
