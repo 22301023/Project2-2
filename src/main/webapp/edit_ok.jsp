@@ -1,16 +1,11 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: leeym
-  Date: 2025. 11. 22.
-  Time: 오후 4:55
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Will work on next week</title>
 </head>
 <body>
-
+<div class="d-flex justify-content-end">
+    <a href="list.jsp" class="btn btn-primary">목록으로 돌아가기</a>
+</div>
 </body>
 </html>
