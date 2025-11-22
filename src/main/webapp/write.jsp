@@ -30,6 +30,10 @@
             <label for="gender" class="form-label">성별</label>
             <input type="text" class="form-control" id="gender" name="gender" placeholder="성별을 입력하세요(Male/Female)" required></input>
         </div>
+        <div class="mb-3">
+            <label for="occupation" class="form-label">직업</label>
+            <input type="text" class="form-control" id="occupation" name="occupation" placeholder="직업을 입력하세요" required></input>
+        </div>
         <div class="text-end">
             <button type="submit" class="btn btn-primary">저장</button>
             <a href="index.jsp" class="btn btn-secondary">취소</a>
