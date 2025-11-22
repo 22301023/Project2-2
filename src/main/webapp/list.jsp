@@ -20,19 +20,16 @@
 <body>
 <jsp:include page="header.jsp" />
 <%
-    // 검색 조건과 검색어 가져오기
     String key = request.getParameter("key");
     String keyword = request.getParameter("keyword");
 
     BoardDAO boardDAO = new BoardDAO();
-    // 검색 매개변수를 전달하여 리스트 가져오기
     List<BoardVO> list = boardDAO.getBoardList(key, keyword);
     request.setAttribute("list",list);
 %>
 <div class="container">
     <h2 class="my-4">JSP 게시판</h2>
 
-    <!-- 검색 폼 시작 -->
     <form action="list.jsp" method="get" class="mb-3">
         <div class="row g-2 justify-content-end">
             <div class="col-auto">
@@ -50,7 +47,6 @@
             </div>
         </div>
     </form>
-    <!-- 검색 폼 끝 -->
 
     <table class="table table-hover text-center" id = "list">
         <thead class="table-dark">
@@ -69,7 +65,8 @@
         <tbody>
         <c:forEach items = "${list}" var = "u" varStatus = "status">
             <tr>
-                <td>${status.count}</td>
+                <td>${list.size() - (status.count - 1)}</td>
+<%--                <td>${u.getId()}</td>--%>
                 <td>${u.getFirstname()}</td>
                 <td>${u.getLastname()}</td>
                 <td>${u.getAge()}</td>

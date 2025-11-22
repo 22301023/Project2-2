@@ -42,30 +42,24 @@ public class BoardDAO {
         List<BoardVO> boardList = new ArrayList<BoardVO>();
         System.out.println("===> JDBC로 getBoardList(search) 기능 처리");
 
-        // 기본 쿼리
         String sql = "select * from BOARD";
 
-        // 검색 조건 유효성 검사 플래그
         boolean isSearch = false;
 
-        // key값이 유효한 컬럼명인지 확인 (SQL Injection 방지용 화이트리스트 체크)
         if(key != null && !key.isEmpty() && keyword != null && !keyword.isEmpty()){
             if("lastname".equals(key) || "gender".equals(key) || "occupation".equals(key)) {
-                // 컬럼명은 ?로 바인딩 불가능하므로 문자열 결합 사용 (안전함)
                 sql += " WHERE " + key + " LIKE ?";
                 isSearch = true;
             }
         }
 
-        sql += " order by id desc"; // 최신순 정렬
+        sql += " order by id desc";
 
         try {
             conn = JDBCUtil.getConnection();
             pstmt = conn.prepareStatement(sql);
 
-            // 검색 조건이 유효할 때만 ?에 값을 설정
             if(isSearch) {
-                // LIKE 검색을 위해 앞뒤에 % 추가
                 pstmt.setString(1, "%" + keyword + "%");
             }
 
