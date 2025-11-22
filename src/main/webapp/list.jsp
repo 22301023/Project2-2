@@ -16,40 +16,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 목록</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-    </style>
 </head>
 <body>
 <jsp:include page="header.jsp" />
 <%
+    String key = request.getParameter("key");
+    String keyword = request.getParameter("keyword");
+
     BoardDAO boardDAO = new BoardDAO();
-    List<BoardVO> list = boardDAO.getBoardList();
+    List<BoardVO> list = boardDAO.getBoardList(key, keyword);
     request.setAttribute("list",list);
 %>
 <div class="container">
     <h2 class="my-4">JSP 게시판</h2>
 
+    <form action="list.jsp" method="get" class="mb-3">
+        <div class="row g-2 justify-content-end">
+            <div class="col-auto">
+                <select name="key" class="form-select">
+                    <option value="lastname" <%= "lastname".equals(key) ? "selected" : "" %>>성</option>
+                    <option value="gender" <%= "gender".equals(key) ? "selected" : "" %>>성별</option>
+                    <option value="occupation" <%= "occupation".equals(key) ? "selected" : "" %>>직업</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <input type="text" name="keyword" class="form-control" placeholder="검색어 입력" value="<%= keyword != null ? keyword : "" %>">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">검색</button>
+            </div>
+        </div>
+    </form>
+
     <table class="table table-hover text-center" id = "list">
         <thead class="table-dark">
         <tr>
             <th>번호</th>
-            <th>성</th>
             <th>이름</th>
+            <th>성</th>
             <th>나이</th>
             <th>성별</th>
+            <th>직업</th>
             <th>날짜</th>
             <th>삭제</th>
             <th>수정</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items = "${list}" var = "u">
+        <c:forEach items = "${list}" var = "u" varStatus = "status">
             <tr>
-                <td>${u.getId()}</td>
+                <td>${list.size() - (status.count - 1)}</td>
+<%--                <td>${u.getId()}</td>--%>
                 <td>${u.getFirstname()}</td>
                 <td>${u.getLastname()}</td>
                 <td>${u.getAge()}</td>
                 <td>${u.getGender()}</td>
+                <td>${u.getOccupation()}</td>
                 <td>${u.getRegdate()}</td>
                 <td><a href="delete_ok.jsp?id=${u.id}">Delete</a></td>
                 <td><a href="edit_ok.jsp?id=${u.id}">Edit</a></td>
@@ -59,7 +81,7 @@
     </table>
 
     <div class="d-flex justify-content-end">
-        <a href="write.jsp" class="btn btn-primary">새 글 작성</a>
+        <a href="write.jsp" class="btn btn-primary">새 고객 추가하기</a>
     </div>
 </div>
 
