@@ -28,7 +28,11 @@
         </div>
         <div class="mb-3">
             <label for="gender" class="form-label">성별</label>
-            <input type="text" class="form-control" id="gender" name="gender" placeholder="성별을 입력하세요(Male/Female)" required></input>
+            <select class="form-select" id="gender" name="gender" required>
+                <option value="" disabled selected>성별을 선택하세요</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
         </div>
         <div class="mb-3">
             <label for="occupation" class="form-label">직업</label>
