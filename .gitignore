@@ -2,7 +2,7 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-!target/root.war
+!target/W25_22301023_1.war
 .kotlin
 
 ### IntelliJ IDEA ###
