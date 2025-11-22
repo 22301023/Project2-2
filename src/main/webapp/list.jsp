@@ -37,6 +37,7 @@
             <th>이름</th>
             <th>나이</th>
             <th>성별</th>
+            <th>직업</th>
             <th>날짜</th>
             <th>삭제</th>
             <th>수정</th>
@@ -50,6 +51,7 @@
                 <td>${u.getLastname()}</td>
                 <td>${u.getAge()}</td>
                 <td>${u.getGender()}</td>
+                <td>${u.getOccupation()}</td>
                 <td>${u.getRegdate()}</td>
                 <td><a href="delete_ok.jsp?id=${u.id}">Delete</a></td>
                 <td><a href="edit_ok.jsp?id=${u.id}">Edit</a></td>
