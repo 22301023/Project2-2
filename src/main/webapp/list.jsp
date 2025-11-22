@@ -16,8 +16,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시판 목록</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-    </style>
 </head>
 <body>
 <jsp:include page="header.jsp" />
@@ -33,6 +31,7 @@
         <thead class="table-dark">
         <tr>
             <th>번호</th>
+            <th>ID</th>
             <th>성</th>
             <th>이름</th>
             <th>나이</th>
@@ -44,8 +43,9 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items = "${list}" var = "u">
+        <c:forEach items = "${list}" var = "u" varStatus = "status">
             <tr>
+                <td>${status.count}</td>
                 <td>${u.getId()}</td>
                 <td>${u.getFirstname()}</td>
                 <td>${u.getLastname()}</td>
@@ -61,7 +61,7 @@
     </table>
 
     <div class="d-flex justify-content-end">
-        <a href="write.jsp" class="btn btn-primary">새 글 작성</a>
+        <a href="write.jsp" class="btn btn-primary">새 고객 추가하기</a>
     </div>
 </div>
 
